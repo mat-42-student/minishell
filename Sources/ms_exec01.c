@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exec01.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 17:50:04 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/20 00:58:22 by mamat            ###   ########.fr       */
+/*   Updated: 2023/06/21 15:02:00 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	ms_child(t_ms *ms, int i)
 {
 	char	*pathcmd;
 
+	ms_printcmd(ms->cmd[i]);
 	ms_close_pipes_but(ms, i);
 	ms_fixfds(&ms->cmd[i]);
 	dup2(ms->cmd[i].fdin, 0);
@@ -70,9 +71,9 @@ void	ms_child(t_ms *ms, int i)
 		pathcmd = ft_strjoin(ms->cmd[i].path, ms->cmd[i].cmd_name);
 		if (!pathcmd)
 			return ;
+		fprintf(stderr, "child #%d\n", i);
 		if (ms->cmd[i].path && !ft_strequal(ms->cmd[i].cmd_name, ""))
 			execve(pathcmd, ms->cmd[i].args, ms->envp);
-		//ft_freenull((void **)&pathcmd);
 		ms_bad_child_ending(pathcmd);
 	}
 }
