@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:24:12 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/15 09:53:41 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/21 16:24:56 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,9 @@ int	ms_exp_all(t_export *exp, t_ms *ms, int max)
 	n = -1;
 	while (++n < max)
 	{
-		if (ms_exp_one(&exp[n], ms))
-			return (1);
+		if (exp[n].name)
+			if (ms_exp_one(&exp[n], ms))
+				return (1);
 	}
 	return (0);
 }
