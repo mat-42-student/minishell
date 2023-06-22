@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 11:02:48 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/13 16:06:54 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/21 16:26:38 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,11 @@ int	ms_exp_init(t_export *exp, char **args, int max)
 	{
 		if (!ms_valid_name(args[n]))
 		{
-			ft_putstr_fd("msh: export: not a valid identifier\n", 2);
-			return (1);
+			ft_putstr_fd("msh: export: `", 2);
+			ft_putstr_fd(args[n], 2);
+			ft_putstr_fd("': not a valid identifier\n", 2);
 		}
-	}
-	n = -1;
-	while (args[++n])
-	{
-		if (exp_split(&exp[n], args[n]))
+		else if (exp_split(&exp[n], args[n]))
 			return (ms_exp_free(exp, max), 1);
 	}
 	return (0);

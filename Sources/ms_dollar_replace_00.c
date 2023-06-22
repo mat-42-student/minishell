@@ -6,7 +6,7 @@
 /*   By: rficht <robin.ficht@free.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:24:46 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/18 14:59:37 by rficht           ###   ########.fr       */
+/*   Updated: 2023/06/21 16:28:00 by rficht           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	ms_dollar_replace(char **str, t_ms *ms)
 	int	dol_pos;
 	int	n;
 
+	if (!str || !(*str) || !ms)
+		return (1);
 	n = 0;
 	dol_pos = next_dol_pos(*str);
 	while (dol_pos != (-1) && n < 3)
