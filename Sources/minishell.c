@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:08:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/22 13:12:10 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/22 13:36:13 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,9 @@ int	ms_launch_cmds(t_ms *ms)
 	ms_get_fds(ms);
 	if (ms_lex(ms))
 		return (1);
-	// ms_printcmds(*ms);
 	if (ms_exec(ms))
 		return (1);
 	return (0);
-}
-
-/**
- * 
- * 
-*/
-char	*ms_strsubstitute(char *str, char *set, char replace)
-{
-	int		i;
-
-	i = -1;
-	while (str[++i])
-	{
-		if (!ms_quote_status(str, i) && str[i] != ' ' && ft_is_in(str[i], set) != -1)
-			str[i] = replace;
-	}
-	return (str);
 }
 
 /**

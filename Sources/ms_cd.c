@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 12:02:02 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/22 13:22:45 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/22 13:24:39 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	ms_cd(t_cmd *cmd)
 	{
 		ft_putstr_fd("msh: cd: ", 2);
 		perror(cmd->args[1]);
-		// ft_putstr_fd(": No such file or directory\n", 2);
 		stat_err(1);
 		return (1);
 	}

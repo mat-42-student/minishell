@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/20 00:58:22 by mamat            ###   ########.fr       */
+/*   Updated: 2023/06/22 13:36:29 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,49 +101,49 @@ struct s_export
 void	line_init(char	*str, t_ms *p);
 
 //err and memory
+void	ms_bad_child_ending(char *pathcmd);
 void	ms_crash(t_ms *ms);
-void	ms_free_cmd(t_ms *ms);
-void	ms_free(t_ms *ms);
-void	ms_free_env(t_ms *ms);
 int		ms_error_msg(char *str, int err);
 int		ms_exit_dir(char *str);
 int		ms_error_file(char *file, char m, int err);
-void	ms_bad_child_ending(char *pathcmd);
+void	ms_free(t_ms *ms);
+void	ms_free_cmd(t_ms *ms);
+void	ms_free_env(t_ms *ms);
 void	ms_loop_free(t_ms *ms);
 
 //parsing
+int		ms_badchev(char *str);
+int		ms_checkpipes(char *str);
 int		ms_get_cmds(t_ms *ms);
-char	*ms_trim_hashtag(char *str);
 int		ms_isquote(char c);
-int		*ms_where_are(char c, char *str);
-int		ms_where_is(char c, char *str);
-int		ms_where_is_last(char c, char *str);
+char	*ms_noquotes(char *str);
+int		ms_pipesplit(t_ms *ms);
 int		ms_quote_status(char *str, int j);
 char	**ms_quotesplit(char *s, char sep, t_ms *ms);
-char	*ms_noquotes(char *str);
-int		ms_checkpipes(char *str);
-int		ms_badchev(char *str);
-int		ms_pipesplit(t_ms *ms);
+char	*ms_strsubstitute(char *str, char *set, char replace);
+char	*ms_trim_hashtag(char *str);
 int		ms_trimquotes(char **str);
+int		ms_where_is(char c, char *str);
+int		ms_where_is_last(char c, char *str);
 int		ms_wrongchars(char	*str);
 
 // redirection
-void	ms_get_fds(t_ms *ms);
 int		ms_get_fdin(t_cmd *cmd);
 int		ms_get_fdout(t_cmd *cmd);
+void	ms_get_fds(t_ms *ms);
 int		ms_getinfile(t_cmd *cmd, int i);
-int		ms_get_limiter(t_cmd *cmd, int i);
 void	ms_gof_init(int *dels, int *app, int *i, t_cmd *cmd);
+int		ms_get_limiter(t_cmd *cmd, int i);
 int		ms_heredoc(t_cmd *cmd);
 void	ms_openfile(t_cmd *cmd, char *file, char m);
 int		set_end_filename(t_cmd *cmd, int i);
 
 //lexing & execution
-int		ms_isbuiltin(char *str);
-int		ms_lex(t_ms *ms);
-int		ms_exec(t_ms *ms);
-int		ms_launch_children(t_ms *ms);
 int		ms_close(t_ms *ms, int val);
+int		ms_exec(t_ms *ms);
+int		ms_isbuiltin(char *str);
+int		ms_launch_children(t_ms *ms);
+int		ms_lex(t_ms *ms);
 
 //terminal
 int		ms_terminal_init(t_ms *ms);
@@ -151,51 +151,50 @@ int		ms_terminal_reset(t_ms *ms);
 
 //builtins
 int		ms_cd(t_cmd *cmd);
-int		ms_exit(t_cmd *cmd);
-int		ms_env(t_cmd *cmd);
-int		ms_unset(t_cmd *cmd);
 int		ms_echo(t_cmd *cmd);
+int		ms_env(t_cmd *cmd);
+int		ms_exit(t_cmd *cmd);
 int		ms_export(t_cmd *cmd);
 int		ms_pwd(t_cmd *cmd);
+int		ms_unset(t_cmd *cmd);
 
 // exec
-int		ms_do_builtin(t_cmd	*cmd);
-void	ms_fixfds(t_cmd	*cmd);
-void	ms_close_pipes_but(t_ms *ms, int i);
-int		ms_is_localfile(char *file);
 int		ms_check_fds(t_cmd cmd);
+void	ms_close_pipes_but(t_ms *ms, int i);
+int		ms_do_builtin(t_cmd	*cmd);
 void	ms_exit_check_fds(t_cmd cmd);
+void	ms_fixfds(t_cmd	*cmd);
+int		ms_is_localfile(char *file);
 
 //utils
-int		ms_dollar_replace(char **str, t_ms *ms);
-void	set_sig(void);
-int		ms_sizeof_tab(char **my_tab);
 int		incr_shell_lvl(t_ms *ms);
-int		ms_env_pos(char *str, char **envp);
+int		is_env(char *str, char *env);
+void	set_sig(void);
 void	ms_copy_env(char *envp[], t_ms *ms);
+int		ms_dollar_replace(char **str, t_ms *ms);
+int		ms_env_hasval(char *str);
+int		ms_env_pos(char *str, char **envp);
+int		ms_env_valid_char(char *str, int pos);
+int		ms_env_var_len(char *str);
 char	*ms_getenv_val(char *str, t_ms *ms);
 int		ms_getenv_varl(char *str, t_ms *ms);
-int		ms_env_valid_char(char *str, int pos);
-int		is_env(char *str, char *env);
-int		ms_env_var_len(char *str);
-void	ms_no_arg_export(t_ms *ms, int fd_out);
-int		ms_env_hasval(char *str);
-int		ms_exportvar(char *new_var, t_ms *ms);
-int		ms_exp_exportvar(t_export *exp, t_ms *ms);
-int		ms_valid_name(char *new_var);
-void	ms_exp_free(t_export *exp, int max);
 int		ms_exp_all(t_export *exp, t_ms *ms, int max);
+int		ms_exp_exportvar(t_export *exp, t_ms *ms);
+void	ms_exp_free(t_export *exp, int max);
+int		ms_exportvar(char *new_var, t_ms *ms);
+void	ms_no_arg_export(t_ms *ms, int fd_out);
+int		ms_sizeof_tab(char **my_tab);
+int		ms_valid_name(char *new_var);
 
 //debug
-void	ms_printtab(char **str_tab, int fd);
+void	ms_disp_pipes(t_ms *ms);
 void	ms_printcmds(t_ms ms);
 void	ms_printcmd(t_cmd cmd);
-void	ms_disp_pipes(t_ms *ms);
-void	ms_printcmd(t_cmd cmd);
+void	ms_printtab(char **str_tab, int fd);
 
 //statics
-int		stat_sig(int val);
 int		stat_err(int val);
+int		stat_sig(int val);
 
 //doll replacing
 int		dol_replace(char **str, int pos, t_ms *ms);
