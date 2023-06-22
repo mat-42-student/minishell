@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:12:35 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/22 13:36:53 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/22 15:57:29 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,11 @@ void	set_sig(void)
 {
 	struct sigaction	sa;
 
+	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = SA_RESTART;
 	sa.sa_sigaction = ft_sighandle;
 	if (sigaction(SIGINT, &sa, NULL) == -1)
+		ms_crash(NULL);
+	if (sigaction(SIGQUIT, &sa, NULL) == -1)
 		ms_crash(NULL);
 }
