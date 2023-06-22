@@ -21,3 +21,5 @@ tut
 out
 coin
 *.sh
+tester/*
+tester/

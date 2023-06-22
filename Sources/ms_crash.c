@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 09:55:29 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/21 13:15:46 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/22 13:20:46 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,10 @@ int	ms_error_msg(char *str, int err)
 int	ms_error_file(char *file, char m, int err)
 {
 	write(2, "msh: ", 5);
+	write(2, file, ft_sstrlen(file));
 	if (m == 'c')
-	{
-		write(2, file, ft_sstrlen(file));
 		write(2, ": command not found\n", 20);
-	}
-	else
-		perror(file);
-	if (errno == 13)
-		err = 126;
-/*	else if (access(file, F_OK) == -1)
+	else if (access(file, F_OK) == -1)
 		write(2, NO_F"\n", 28);
 	else if (m == 'w' && access(file, W_OK) == -1)
 		write(2, ": Permission denied\n", 20);
@@ -53,7 +47,6 @@ int	ms_error_file(char *file, char m, int err)
 	else if (m == 'x' && ((access(file, R_OK) == -1) || \
 		(access(file, X_OK) == -1)))
 		write(2, ": Permission denied\n", 20);
-*/
 	return (err);
 }
 

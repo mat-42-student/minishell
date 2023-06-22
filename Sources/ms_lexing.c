@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_lexing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:23:24 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/20 01:22:39 by mamat            ###   ########.fr       */
+/*   Updated: 2023/06/22 13:11:09 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,13 @@ int	ms_lex(t_ms *ms)
 		else
 			return (1);
 		if (ms_where_is('/', ms->cmd[i].cmd_name) != -1)
-			return (ms_get_path_from_name(ms, i));
-		path = ms_getpath(ms);
-		ms->cmd[i].path = ms_findpath(ms->cmd[i].cmd_name, path);
-		ft_freetab(path);
+			ms_get_path_from_name(ms, i);
+		else
+		{
+			path = ms_getpath(ms);
+			ms->cmd[i].path = ms_findpath(ms->cmd[i].cmd_name, path);
+			ft_freetab(path);
+		}
 	}
 	return (0);
 }

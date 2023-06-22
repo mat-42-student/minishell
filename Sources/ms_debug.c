@@ -6,7 +6,7 @@
 /*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:32:05 by rficht            #+#    #+#             */
-/*   Updated: 2023/06/04 15:45:01 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/22 13:02:56 by mdjemaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	ms_disp_pipes(t_ms *ms)
 void	ms_printcmd(t_cmd cmd)
 {
 	printf(YELLOW"commande %d\n"RESET, cmd.nb);
+	printf("Line : %s\n", cmd.line);
 	ft_printstrtab(cmd.args, "ARGS");
 	printf("PATH : %s\n", cmd.path);
 	printf("CmdName : %s\n", cmd.cmd_name);
