@@ -1,7 +1,5 @@
 TODO
 
-* /!\ export /!\ en fait le comportement attendu est celui d'avant (s'il y a une erreur dans un des args, les autres sont affectes quand meme). C'est entierement de ma faute, je suis navré, j'ai suivi un bruit de couloir sans verifier...
-
 OK
 * copier / coller dans le prompt fait un truc bizarre. Ca fait des artefacts juste apres le prompt, impossible de delete : c'etait RESET dans le prompt
 * leaks sur les builtins
@@ -45,3 +43,4 @@ OK
 * il faudrait afficher permission denied dans un repertoire sans droits + $? à 126
 * remplacer les eventuels caracteres d'espacement dans la chaine readline par des espaces classiques
 * ./script | ./script 
+* /!\ export /!\ en fait le comportement attendu est celui d'avant (s'il y a une erreur dans un des args, les autres sont affectes quand meme). C'est entierement de ma faute, je suis navré, j'ai suivi un bruit de couloir sans verifier...
