@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_redir_infile.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:54:53 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/16 17:36:59 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/23 09:29:43 by mamat            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ int	ms_heredoc(t_cmd *cmd)
 	stat_sig(normal);
 	close(cmd->herepipe[1]);
 	cmd->fdin = cmd->herepipe[0];
-	ft_freestr(&cmd->limiter);
 	free(cmd->herepipe);
 	return (WEXITSTATUS(err));
 }

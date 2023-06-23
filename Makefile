@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+         #
+#    By: mamat <mamat@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 18:54:14 by mdjemaa           #+#    #+#              #
-#    Updated: 2023/06/19 12:44:00 by mdjemaa          ###   ########.fr        #
+#    Updated: 2023/06/23 09:30:52 by mamat            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ CC := gcc
 CFLAGS := -Wall -Wextra -Werror -g
 INCLUDES = -I Includes -I /Users/$$USER/.brew/opt/readline/include
 LIB = -lreadline -L /Users/$$USER/.brew/opt/readline/lib -lft -L ./libft
-SANITIZE := -fsanitize=address
+SANITIZE := -fsanitize=leak
 
 SRC :=	Sources/minishell.c\
 		Sources/ms_cd.c\

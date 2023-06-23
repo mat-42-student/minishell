@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:40:22 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/19 17:37:47 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/23 09:28:56 by mamat            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ms_pipes_close_free_null(t_ms *ms)
  * free every cmds and their content.
  * @param ms the address of minishell
  */
-void	ms_free_cmd(t_ms *ms)
+void	ms_free_cmds(t_ms *ms)
 {
 	int	i;
 
@@ -68,9 +68,10 @@ void	ms_free_cmd(t_ms *ms)
 			ft_freestr(&(ms->cmd[i].line));
 		if (ms->cmd[i].path)
 			ft_freestr(&(ms->cmd[i].path));
+		if (&(ms->cmd[i].limiter))
+			ft_freestr(&(ms->cmd[i].limiter));
 	}
-	if (ms->nbcmd)
-		ft_freenull((void **) &ms->cmd);
+	ft_freenull((void **) &ms->cmd);
 }
 
 /**
@@ -97,7 +98,7 @@ void	ms_loop_free(t_ms *ms)
 		else
 			stat_err(WEXITSTATUS(err));
 	}
-	ms_free_cmd(ms);
+	ms_free_cmds(ms);
 	if (ms->pid)
 		ft_freenull((void **) &ms->pid);
 	ms->nbcmd = 0;

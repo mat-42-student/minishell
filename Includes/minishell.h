@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdjemaa <mdjemaa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mamat <mamat@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:32:55 by mdjemaa           #+#    #+#             */
-/*   Updated: 2023/06/22 13:36:29 by mdjemaa          ###   ########.fr       */
+/*   Updated: 2023/06/23 09:28:56 by mamat            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int		ms_error_msg(char *str, int err);
 int		ms_exit_dir(char *str);
 int		ms_error_file(char *file, char m, int err);
 void	ms_free(t_ms *ms);
-void	ms_free_cmd(t_ms *ms);
+void	ms_free_cmds(t_ms *ms);
 void	ms_free_env(t_ms *ms);
 void	ms_loop_free(t_ms *ms);
 
